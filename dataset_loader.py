@@ -69,8 +69,8 @@ class DATASET_LOADER:
         return None
             
 if __name__ == '__main__':
-        """VALIDATION OF THE MODULE
-        """
+    """VALIDATION OF THE MODULE
+    """
     fileName = "Boston.csv"
     data_loader = DATASET_LOADER(fileName)
     print(data_loader)
