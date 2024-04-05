@@ -56,6 +56,11 @@ class DATASET_LOADER:
         return None
     
     def plot_data_using_matplotlib(self):
+        """Create scatter plots of the dataset using matplotlib
+
+        Returns:
+            None: Show the plots
+        """
         #get the number of features in the dataset 
         nbr_features = len(self.dataset.columns)
         #create 2 lines of subplots
