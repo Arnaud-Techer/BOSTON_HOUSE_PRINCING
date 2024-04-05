@@ -2,10 +2,12 @@
 Author : Arnaud TECHER 
 Date : 25/03/2024
 Goal : Practice of machine learning on a dataset from Kaggle - The Boston Housing Dataset
+For learning purpose, POO is used to load the dataset and build models.
 '''
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 class DATASET_LOADER:
     """
@@ -13,14 +15,15 @@ class DATASET_LOADER:
     """
         
     def __init__(self,fileName,plotDataFlag=True):
-        """Instance the class to load the dataset in a dataframe
+        """Instantiate the class to load the dataset in a dataframe
 
         Args:
             fileName (str): Name of the file that contains the data
         """
         self.dataset = self.read_dataset(fileName)
         if plotDataFlag:
-            self.plot_data_flag()
+            self.plot_data_using_seaborn()
+            self.histplot_house_pricing()
 
     def __str__(self) -> str:
         """Representation of the loader with a str
@@ -42,15 +45,20 @@ class DATASET_LOADER:
         dataset = pd.read_csv(fileName)
         return dataset
     
-    def plot_data_flag(self):
-        """Plots of the target features in function of the different features in the dataset.
-            Save the plot in the same folder that the script
-        Returns:
-            None:
+    def histplot_house_pricing(self):
+        """Create an histplot for the target value
         """
-        # get the number of features in the dataset 
-        nbr_features = int(self.dataset.shape[1])
-        # create 2 lines of subplots
+        sns.histplot(self.dataset["MEDV"],kde=True,color="green")
+        plt.title('Distribution of the housing prices.')
+        plt.xlabel("Median value of owner-occupied homes in $1000s")
+        plt.ylabel("Number of houses")
+        plt.show()
+        return None
+    
+    def plot_data_using_matplotlib(self):
+        #get the number of features in the dataset 
+        nbr_features = len(self.dataset.columns)
+        #create 2 lines of subplots
         fig,axs = plt.subplots(2,int(nbr_features/2),sharey=True)
         count = 0
         for i in range(2):
@@ -67,6 +75,29 @@ class DATASET_LOADER:
         plt.savefig("plots_boston_princing_dataset.png",dpi=300.)
         plt.show()
         return None
+
+    def plot_data_using_seaborn(self):
+        """Plots of the target features in function of the different features in the dataset.
+            Save the plot in the same folder that the script
+        Returns:
+            None:
+        """
+        features_to_scatter = [featureName for featureName in self.dataset.columns if featureName not in ["MEDV","CHAS"]]
+        sns.set_style(style="ticks")
+        sns.pairplot(data=self.dataset,x_vars=features_to_scatter,y_vars=["MEDV"],kind='scatter',height=2)
+        plt.savefig("plots_boston_princing_dataset.png",dpi=300.)
+        plt.show()
+
+        sns.set_style(style='whitegrid')
+        sns.boxplot(data=self.dataset,x="CHAS",y="MEDV",color="green")
+        plt.title("Median value of owner-occupied homes in $1000s function of the bounding or not of the river")
+        plt.xlabel("Tract bounds the river or not")
+        plt.ylabel("Median value of owner-occupied homes in $1000s")
+        plt.savefig("plots_boston_princing_vs_chas.png",dpi=300.)
+        plt.show()
+        return None
+        
+
             
 if __name__ == '__main__':
     """VALIDATION OF THE MODULE
