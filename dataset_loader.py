@@ -13,6 +13,22 @@ class DATASET_LOADER:
     """
     Object that contain the dataset in a DataFrame format
     """
+
+    FEATURES = dict()
+    FEATURES['CRIM'] = "per capita crime rate by town"
+    FEATURES['ZN'] = "proportion of residential land zoned for lots over 25,000 sq.ft."
+    FEATURES['INDUS'] = "proportion of non-retail business acres per town"
+    FEATURES['CHAS'] = "Charles River dummy variable (1 if tract bounds river; 0 otherwise)"
+    FEATURES['NX'] = "nitric oxides concentration (parts per 10 million)"
+    FEATURES['RM'] = "average number of rooms per dwelling"
+    FEATURES['AGE'] = "proportion of owner-occupied units built prior to 1940"
+    FEATURES['DIS'] = "weighted distances to five Boston employment centres"
+    FEATURES['RAD'] = "index of accessibility to radial highways"
+    FEATURES['TAX'] = "full-value property-tax rate per $10,000"
+    FEATURES['PTRATIO'] = "pupil-teacher ratio by town"
+    FEATURES['B'] = "1000(Bk - 0.63)^2 where Bk is the proportion of [people of African American descent] by town"
+    FEATURES['LSTAT'] = "percentage of lower status of the population"
+
         
     def __init__(self,fileName,plotDataFlag=True):
         """Instantiate the class to load the dataset in a dataframe
@@ -89,7 +105,9 @@ class DATASET_LOADER:
         """
         features_to_scatter = [featureName for featureName in self.dataset.columns if featureName not in ["MEDV","CHAS"]]
         sns.set_style(style="ticks")
-        sns.pairplot(data=self.dataset,x_vars=features_to_scatter,y_vars=["MEDV"],kind='scatter',height=2)
+        g = sns.pairplot(data=self.dataset,x_vars=features_to_scatter,y_vars=["MEDV"],kind='scatter',height=2)
+        # for ax in g.axes.flatten():
+        #     ax.set_xlabel(self.FEATURES[ax.get_xlabel()])
         plt.savefig("plots_boston_princing_dataset.png",dpi=300.)
         plt.show()
 
