@@ -16,14 +16,14 @@ Several metrics were used to compare the difference between these methods and so
 Here is an example of plots done during the exploration of the data using Seaborn : 
 
 <p align="center">
-  <img src="images/plots_boston_princing_vs_chas.png" width="500" height="500"/>
+  <img src="images/plots_boston_princing_vs_chas.png" width="700" height="500"/>
 </p>
 
 
 Hereafter, you will find and exemple of learning curve of a Linear regression model on the dataset.
 
 <p align="center">
-  <img src="images/learning_curve_LinearRegression.png" width="500" height="500"/>
+  <img src="images/learning_curve_LinearRegression.png" width="700" height="500"/>
 </p>
 
 
