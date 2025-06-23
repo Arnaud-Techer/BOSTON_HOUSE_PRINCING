@@ -313,7 +313,10 @@ if __name__ == "__main__":
     # Plot the learning curve for the linear regression model 
     if flag_map_regressor["linear"]:
         print("INFORMATION FOR THE LINEAR REGRESSION MODEL\n")
+        start = time.time()
         linear_reg = model_house.linear_model()
+        end = time.time()
+        print(f'Time to learn : {end-start} s')
         model_house.plot_learning_curve(linear_reg)
         prediction = model_house.predict_house_pricing(linear_reg)
         model_house.plot_house_pricing_seaborn(linear_reg,prediction)

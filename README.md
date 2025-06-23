@@ -12,11 +12,13 @@ Data engineering were use in order to load the dataset and prepare it for learni
 Several metrics were used to compare the difference between these methods and some visualisation were used to show the learning process of the algorithms. 
 
 Here is an example of plots done during the exploration of the data using Seaborn : 
-![Alt text](plots_boston_princing_vs_chas.png)
+<img src="images/plots_boston_princing_vs_chas.png" width="300" height="200"/>
+
 Hereafter, you will find and exemple of learning curve of a Linear regression model on the dataset.
-![Alt text](learning_curve_LinearRegression.png)
+<img src="images/learning_curve_LinearRegression.png" width="300" height="200"/>
 
 Comparison of the machine learning model used on the Boston House Pricing Dataset : 
+
 | Attempt | #Linear Regression  | # Gradient Boosting Regression | Random Forest Regression
 | Time for learning process | 1.17 ms | 269 ms | 131 ms |
 | Mean Squared Error | 6.96 | 7.90 | 4.99 |
